@@ -1,15 +1,16 @@
 import wx
-from modules import template as tmpl
+import DownloaderMain as Downloader  # Load Downloader functions
+from modules import template as tmpl # Load wx.Frame template
 
-class MyFrame(tmpl.InstagramDownloader):
+class Frame(tmpl.InstagramDownloader):
     def __init__(self, parent, title):
         wx.Frame.__init__(self, parent, title=title, size=(300, 200))
-        self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)
+        
         self.Show()
         self.Centre()
 
 
 if __name__ == '__main__':
     app = wx.App()
-    frame = MyFrame(None, '')
+    frame = Frame(None, '')
     app.MainLoop()
