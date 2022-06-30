@@ -19,6 +19,9 @@ class InstagramDownloader(wx.Frame):
         self.lbID = wx.StaticText(self.panel, -1, "ID: ")
         self.ID = wx.TextCtrl(self.panel, -1, "")
 
+        # creating the button
+        self.btnDownload = wx.Button(self.panel, -1, "Download posts")
+
 
         # Default properties
         self.SetTitle("instagram downloader")
@@ -28,6 +31,7 @@ class InstagramDownloader(wx.Frame):
     def __do_layout(self):
         # Creating the sizer
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
+        sizer_2 = wx.BoxSizer(wx.VERTICAL)
 
 
         # Creating the sizer for the input field
@@ -37,7 +41,14 @@ class InstagramDownloader(wx.Frame):
         InputIDGrid.AddGrowableCol(1)
         sizer_1.Add(InputIDGrid, 0, wx.EXPAND, 0)
 
+
+        # Creating the sizer for the button
+        sizer_1.Add(self.btnDownload, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
+
+
         self.panel.SetSizer(sizer_1)
+        sizer_2.Add(self.panel, 1, wx.EXPAND, 5)
+        self.SetSizer(sizer_2)
         self.Layout()
 
 
