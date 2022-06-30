@@ -16,12 +16,10 @@ class Frame(InstagramDownloader):
 
     def __do_bind(self):
         self.btnDownload.Bind(wx.EVT_BUTTON, self.DownloadStart)
-        self.btnDownloadStop.Bind(wx.EVT_BUTTON, self.DownloadStop)
 
     def DownloadStart(self, event=None):
         instance = Downloader.Downloader(self.ID.GetValue())
         self.btnDownload.Disable()
-        self.btnDownloadStop.Enable()
         try:
             if self.DownloadWayChoice.GetSelection() == 0:
                 Thread(target=instance.downloadProfilePicture).start()
@@ -30,23 +28,17 @@ class Frame(InstagramDownloader):
                 
 
         except instaloader.exceptions.ProfileNotExistsException as e:
-            print("Error", e, wx.ICON_WARNING)
+            self.print(e)
             return
 
         except Exception as e:
-            print("Error", e, wx.ICON_WARNING)
+            self.print(e)
             return
 
 
-    def DownloadStop(self, event=None):
-        
-        self.btnDownload.Enable()
-        self.btnDownloadStop.Disable()
 
-
-
-    def print(self, title, message, props=None):
-        wx.MessageBox(title,  message, props)
+    def print(self, message):
+        self.tbConsole.AppendText(message + "\n")
 
 
 if __name__ == '__main__':

@@ -21,8 +21,6 @@ class InstagramDownloader(wx.Frame):
 
         # creating the button
         self.btnDownload = wx.Button(self.panel, -1, "Download posts")
-        self.btnDownloadStop = wx.Button(self.panel, -1, "Stop downloading")
-        self.btnDownloadStop.Disable() # Disable the button until the download is started
 
         # creating the settings for download
         self.DownloadWayChoice = wx.Choice(self.panel, -1, choices=["Download only profile picture", "Download all posts"])
@@ -54,16 +52,13 @@ class InstagramDownloader(wx.Frame):
 
 
         # Creating the sizer for the button
-        sizer_2.Add(self.DownloadWayChoice, 0, wx.ALL | wx.EXPAND, 10)
+        sizer_2.Add(self.DownloadWayChoice, 0, wx.ALL | wx.EXPAND, 5)
 
         # Creating the sizer for the download buttons
-        button_grid = wx.GridSizer(1, 2, 0, 0)
-        button_grid.Add(self.btnDownload, 0, wx.EXPAND, 0)
-        button_grid.Add(self.btnDownloadStop, 0, wx.EXPAND, 0)
-        sizer_2.Add(button_grid, 0, wx.EXPAND, 0)
+        sizer_2.Add(self.btnDownload, 0, wx.ALL | wx.EXPAND, 5)
 
         # adding tbConsole to the sizer
-        sizer_2.Add(self.tbConsole, 1, wx.EXPAND, 0)
+        sizer_2.Add(self.tbConsole, 1, wx.ALL | wx.EXPAND, 5)
 
         self.panel.SetSizer(sizer_2)
         
