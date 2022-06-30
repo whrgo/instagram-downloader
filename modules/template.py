@@ -21,6 +21,8 @@ class InstagramDownloader(wx.Frame):
 
         # creating the button
         self.btnDownload = wx.Button(self.panel, -1, "Download posts")
+        self.btnDownloadStop = wx.Button(self.panel, -1, "Stop downloading")
+        self.btnDownloadStop.Disable() # Disable the button until the download is started
 
 
         # Default properties
@@ -42,8 +44,9 @@ class InstagramDownloader(wx.Frame):
         sizer_1.Add(InputIDGrid, 0, wx.EXPAND, 0)
 
 
-        # Creating the sizer for the button
+        # Creating the sizer for the download buttons
         sizer_1.Add(self.btnDownload, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
+        sizer_1.Add(self.btnDownloadStop, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
 
         self.panel.SetSizer(sizer_1)
