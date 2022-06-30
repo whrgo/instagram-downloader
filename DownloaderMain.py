@@ -5,8 +5,12 @@ class Downloader():
         self.username = username
         self.loader = instaloader.Instaloader()
 
-    def downloadPicture(self):
+    def downloadPosts(self):
+        self.loader.download_profile(self.username)
+
+    def downloadProfilePicture(self):
         self.loader.download_profile(self.username, profile_pic_only=True)
+
 
 
 if __name__ == "__main__":
