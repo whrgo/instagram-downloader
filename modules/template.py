@@ -24,6 +24,15 @@ class InstagramDownloader(wx.Frame):
         self.btnDownloadStop = wx.Button(self.panel, -1, "Stop downloading")
         self.btnDownloadStop.Disable() # Disable the button until the download is started
 
+        # creating the settings for download
+        self.DownloadWayChoice = wx.Choice(self.panel, -1, choices=["Download only profile picture", "Download all posts"])
+        self.DownloadWayChoice.SetSelection(0)
+        self.DownloadWayChoice.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "Sans"))
+
+        # creating the Console
+        self.tbConsole = wx.TextCtrl(self.panel, -1, "", style=wx.TE_MULTILINE | wx.TE_READONLY)
+        self.tbConsole.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "Consolas"))
+
 
         # Default properties
         self.SetTitle("instagram downloader")
@@ -41,17 +50,25 @@ class InstagramDownloader(wx.Frame):
         InputIDGrid.Add(self.lbID, 0, wx.ALIGN_CENTER_VERTICAL, 0)
         InputIDGrid.Add(self.ID, 0, wx.EXPAND, 0)
         InputIDGrid.AddGrowableCol(1)
-        sizer_1.Add(InputIDGrid, 0, wx.EXPAND, 0)
+        sizer_2.Add(InputIDGrid, 0, wx.EXPAND, 0)
 
+
+        # Creating the sizer for the button
+        sizer_2.Add(self.DownloadWayChoice, 0, wx.ALL | wx.EXPAND, 10)
 
         # Creating the sizer for the download buttons
-        sizer_1.Add(self.btnDownload, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
-        sizer_1.Add(self.btnDownloadStop, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
+        button_grid = wx.GridSizer(1, 2, 0, 0)
+        button_grid.Add(self.btnDownload, 0, wx.EXPAND, 0)
+        button_grid.Add(self.btnDownloadStop, 0, wx.EXPAND, 0)
+        sizer_2.Add(button_grid, 0, wx.EXPAND, 0)
 
+        # adding tbConsole to the sizer
+        sizer_2.Add(self.tbConsole, 1, wx.EXPAND, 0)
 
-        self.panel.SetSizer(sizer_1)
-        sizer_2.Add(self.panel, 1, wx.EXPAND, 5)
-        self.SetSizer(sizer_2)
+        self.panel.SetSizer(sizer_2)
+        
+        sizer_1.Add(self.panel, 1, wx.ALL | wx.EXPAND, 5)
+        self.SetSizer(sizer_1)
         self.Layout()
 
 
